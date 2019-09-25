@@ -8,6 +8,6 @@ builders:
   image_builder:
     import: 'package:image_path_helper/builder.dart'
     builder_factories: ['imagePathBuilder']
-    build_extensions: { '.dart': ['image_path.g.dart'] }
+    build_extensions: { '.dart': ['.g.dart'] }
     auto_apply: root_package
     build_to: source
