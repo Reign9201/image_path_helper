@@ -1,14 +1,14 @@
-targets:
-  $default:
-    builders:
-      image_path_helper|image_builder:
-        enabled: true
+#targets:
+#  $default:
+#    builders:
+#      image_path_helper|image_builder:
+#        enabled: true
 
 builders:
   image_builder:
     import: 'package:image_path_helper/builder.dart'
     builder_factories: ['imagePathBuilder']
     build_extensions: { '.dart': ['image_path.g.dart'] }
-    auto_apply: dependents
-    build_to: cache
-    applies_builders: ["source_gen|combining_builder"]
+    auto_apply: root_package
+    build_to: source
+#    applies_builders: ["source_gen|combining_builder"]
