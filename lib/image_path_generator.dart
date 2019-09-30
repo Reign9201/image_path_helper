@@ -11,10 +11,8 @@ class ImagePathGenerator extends GeneratorForAnnotation<ImagePathSet> {
   String _pubspecContent = '';
 
   @override
-  generateForAnnotatedElement(
-      Element element, ConstantReader annotation, BuildStep buildStep) {
-    final explanation =
-        '// **************************************************************************\n'
+  generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
+    final explanation = '// **************************************************************************\n'
         '// 如果存在新文件需要更新，建议先执行清除命令：\n'
         '// flutter packages pub run build_runner clean \n'
         '// \n'
@@ -63,26 +61,30 @@ class ImagePathGenerator extends GeneratorForAnnotation<ImagePathSet> {
       throw '$path is not a directory.';
     }
 
-    directory.listSync().forEach((file) {
+    for (var file in directory.listSync()) {
       var type = file.statSync().type;
       if (type == FileSystemEntityType.directory) {
         handleFile('${file.path}/');
       } else if (type == FileSystemEntityType.file) {
         var filePath = file.path;
-        var key = filePath
-            .toUpperCase()
+        var keyName = filePath.trim().toUpperCase();
+
+        if (!keyName.endsWith('.PNG') &&
+            !keyName.endsWith('.JPEG') &&
+            !keyName.endsWith('.SVG') &&
+            !keyName.endsWith('.JPG')) continue;
+        var key = keyName
             .replaceAll(RegExp(path.toUpperCase()), '')
             .replaceAll(RegExp('.PNG'), '')
             .replaceAll(RegExp('.JPEG'), '')
             .replaceAll(RegExp('.SVG'), '')
             .replaceAll(RegExp('.JPG'), '');
 
-        _codeContent =
-            '$_codeContent\n\t\t\t\tstatic const $key = \'$filePath\';';
+        _codeContent = '$_codeContent\n\t\t\t\tstatic const $key = \'$filePath\';';
 
         /// 此处用 \t 符号代替空格在读取的时候会报错，不知道什么情况。。。
         _pubspecContent = '$_pubspecContent\n    - $filePath';
       }
-    });
+    }
   }
 }

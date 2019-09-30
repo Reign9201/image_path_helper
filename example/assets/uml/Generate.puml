@@ -1,0 +1,14 @@
+@startuml
+scale 1.2
+
+Generator --|> GeneratorForAnnotation
+
+abstract class Generator {
+FutureOr<String> generate(library,buildStep)
+}
+
+abstract class GeneratorForAnnotation{
+dynamic generateForAnnotatedElement(element,annotation,buildStep)
+}
+
+@enduml

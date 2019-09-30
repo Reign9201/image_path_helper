@@ -13,7 +13,7 @@ dependencies:
   source_gen: ^0.9.4+4
   build_runner: ^1.7.1
     # analyzer非必须依赖，不依赖这个版本可能导致的结果是build中无法指定auto_apply为root_package，这是一个坑
-  analyzer: 0.38.2
+#  analyzer: 0.38.2
 
 dev_dependencies:
   flutter_test:

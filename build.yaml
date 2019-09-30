@@ -1,8 +1,8 @@
-#targets:
-#  $default:
-#    builders:
-#      image_path_helper|image_builder:
-#        enabled: true
+targets:
+  $default:
+    builders:
+      image_path_helper|image_builder:
+        enabled: true
 
 builders:
   image_builder:
