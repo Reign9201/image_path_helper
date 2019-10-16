@@ -1,6 +1,3 @@
-
-# 使用Dart注解一行代码生成图片资源配置文件
-
 ### 背景
 在使用Flutter开发的时候，有时候会存在很多资源图片问题，按照规定，使用的图片资源需要在 `pubspec.yaml` 文件中配置路径才可以正常使用，如果存在很多50个以上或者更多图片资源，难道需要一个一个配置？显然是不可能的！
 
@@ -297,8 +294,9 @@ builders:
 一个完整的 `build.yaml` 结构图如下：
 ![build.yaml文件结构图](https://s2.ax1x.com/2019/10/12/uO0c1H.png)
 一个 `build.yaml` 文件最终被一个 `BuildConfig` 对象所描述，也就是说 `build.yaml` 文件最终被 `BuildConfig` 所解析。而 `BuildConfig` 包含了四个关键的信息：
+
 key | value |default
---| --| --
+---| --- | ---
 `targets`               | `Map<String, BuildTarget>`                    | 单个的target应该所对应的package名一致
 `builders`              | `Map<String, BuilderDefinition>`              | /
 `post_process_builders` | `Map<String, PostProcessBuilderDefinition>`   | /
@@ -326,8 +324,9 @@ builders:
 ```
 
 `image_builder` 对应的就是 `Map<String, BuilderDefinition>` 中的 `String` 部分，`:` 后面的即 `BuilderDefinition` 信息，对应上面的结构图。下面我们细说 `BuilderDefinition` 中的每个参数的信息：
+
 参数 | 参数类型 | 说明
---   | --       | --
+---   | ---       | ---
 `builder_factories`   | `List<String>`                  | 必填参数，返回的 `Builder` 的方法名称的列表，例如上面的 `Builder` 方法名为 `imagePathBuilder`，则写成 `['imagePathBuilder']`
 `import`              | `String`                        | 必填参数，导入`Builder`所在的包路径，格式为 `package：uri` 的字符串               
 `build_extensions`    | `Map<String, List<String>>`     | 必填参数，从输入扩展名到输出扩展名的映射。举个例子：比如注解使用的位置的文件对应的格式为 `.dart`，指定输出的文件格式可由 `.dart` 转换成 `.g.dart` 或 `.zip` 等等其他格式
@@ -388,3 +387,5 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 - 引用创建好的注解并运行相关命令完成相关操作
 
 **Tips**：本文源码位置：[image_path_helper](https://github.com/Reign9201/image_path_helper)
+
+
