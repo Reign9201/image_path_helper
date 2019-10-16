@@ -6,6 +6,7 @@ import 'package:image_path_helper/image_path_set.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:build/build.dart';
 
+
 class ImagePathGenerator extends GeneratorForAnnotation<ImagePathSet> {
   String _codeContent = '';
   String _pubspecContent = '';
